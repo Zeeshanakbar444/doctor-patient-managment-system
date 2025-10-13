@@ -152,15 +152,15 @@ export const logoutPatient = catchAsyncHandler(async (req, res, next) => {
 });
 
 export const addnewDoctor = catchAsyncHandler(async (req, res, next) => {
-  if (req.files || Object.keys(req.files).length === 0) {
-    return next(new ErrorHandler("Doctor avatar Required", 404));
-  }
+  // if (req.files || Object.keys(req.files).length === 0) {
+  //   return next(new ErrorHandler("Doctor avatar Required", 404));
+  // }
 
-  const { docAvatar } = req.files;
-  const allowFormat = ["/image/png", "/image/jpg", "/image/webp"];
-  if (!allowFormat.includes(docAvatar.mimetype)) {
-    return next(new ErrorHandler("file format is not supported", 404));
-  }
+  // const { docAvatar } = req.files;
+  // const allowFormat = ["/image/png", "/image/jpg", "/image/webp"];
+  // if (!allowFormat.includes(docAvatar.mimetype)) {
+  //   return next(new ErrorHandler("file format is not supported", 404));
+  // }
 
   const {
     firstName,
@@ -195,14 +195,14 @@ export const addnewDoctor = catchAsyncHandler(async (req, res, next) => {
     );
   }
 
-  const cloudinaryResponse = cloudinary.uploader.upload(docAvatar.tempFilePath);
+  // const cloudinaryResponse = cloudinary.uploader.upload(docAvatar.tempFilePath);
 
-  if (!cloudinaryResponse || cloudinaryResponse.error) {
-    console.error(
-      "cloudinary error",
-      cloudinaryResponse.error || "Unknown cloudinary error "
-    );
-  }
+  // if (!cloudinaryResponse || cloudinaryResponse.error) {
+  //   console.error(
+  //     "cloudinary error",
+  //     cloudinaryResponse.error || "Unknown cloudinary error "
+  //   );
+  // }
 
 const doctor  =  await Userd.create({
       firstName,
@@ -215,10 +215,10 @@ const doctor  =  await Userd.create({
     nic,
     doctorDepartment,
     role:"Doctor",
-    docAvatar:{
-      public_id:cloudinaryResponse.public_id,
-      url:cloudinaryResponse.secure_url
-    }
+    // docAvatar:{
+    //   public_id:cloudinaryResponse.public_id,
+    //   url:cloudinaryResponse.secure_url
+    // }
 })
 res.status(200).json({
   success:true,

@@ -12,4 +12,4 @@ router.get("/admin/logout", isAdminAuthenticated,logoutAdmin);
 router.get("/patient/logout", isAdminAuthenticated,logoutPatient);
 router.get("/doctor/addNew", isAdminAuthenticated,addnewDoctor);
 
-export default router;
+export default router
